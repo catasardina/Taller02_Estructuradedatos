@@ -1,4 +1,4 @@
-#include "SparseMatriz.h"
+#include "SparseMatrix.h"
 //da error no entiendo
 #include <iostream>
 using namespace std;

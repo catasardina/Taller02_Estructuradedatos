@@ -1,12 +1,12 @@
 #pragma once
 
-class Node {
+class Nodo {
 public:
     int value;
     int x, y;
-    Node* next;
+    Nodo* next;
 
-    Node(int value, int x, int y) {
+    Nodo(int value, int x, int y) {
         this->value = value;
         this->x = x;
         this->y = y;

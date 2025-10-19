@@ -1,8 +1,8 @@
 #pragma once
-#include "nodo.h"
+#include "Nodo.h"
 class SparseMatrix {
     private:
-    Node* start;
+    Nodo* start;
     public:
     SparseMatrix();
 // Insertar un dato en las coordenadas correspondientes (X, Y).
