@@ -3,10 +3,10 @@
 #include <iostream>
 using namespace std;
 
-SparseMatriz::SparceMatriz(){
+SparseMatrix::SparceMatrix(){
     start =nullptr;
 }
-void SparseMatriz::add(int value. int xPos, int yPos){
+void SparseMatrix::add(int value. int xPos, int yPos){
     if(value ==0) return;
     Node* newNodo =new Nodo( value,xPos,yPos);
     if(!start){
@@ -31,7 +31,7 @@ void SparseMatriz::add(int value. int xPos, int yPos){
     else
         start = newNodo;
 }
-int SparseMatriz::get(int xPos, int yPos){
+int SparseMatrix::get(int xPos, int yPos){
     Nodo* current = start;
     while(current){
         if(current->x == xPos && current ->y== yPos)
