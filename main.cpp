@@ -41,6 +41,14 @@ int main(){
                 X.get(rand() %100,rand ()%100);
             }
         });
-        //agrgar para medir multiplicacion
+        double tiempoMul = medirTiempo([&](){
+            SparseMatrix* P =X.multiply(&Z);
+            delete P;
+        });
+        cout << "Inserción promedio: " << tiempoAdd << " s" << endl;
+        cout << "Búsqueda promedio:  " << tiempoGet << " s" << endl;
+        cout << "Multiplicación promedio: " << tiempoMul << " s" << endl;
     }
+    cout << "Termino de las pruebas"<<endl;
+    return 0;
 }
