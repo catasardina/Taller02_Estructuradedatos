@@ -13,7 +13,8 @@ void generarMatriz(SparseMatrix& m, int cantidad) {
         m.add(value, x, y);
     }
 }
-//investigar esto:
+
+// Template para medir tiempo de ejecución de una función
 template<typename Func>
 double medirTiempo(Func f, int repeticiones = 10) {
     double total = 0;
@@ -25,30 +26,42 @@ double medirTiempo(Func f, int repeticiones = 10) {
     }
     return total / repeticiones;
 }
-int main(){
-    int sizes[] ={50,250,500,1000,5000};
-    cout<<"Pruebas de rendiemiemnto"<<endl;
-    for(int t : sizes){
-        cout<< "==== Tamaño: "<< t << " Elementos ====="<<endl;
-        SparseMatrix X,Z;
-        generarMatriz(X,t);
-        generarMatriz(Z,t);
 
-        double tiempoAdd = medirTiempo([&](){SparseMatrix temp;
-        generarMatriz(temp, t)});
-        double tiempoGet = medirTiempo ({&}(){
-            for(int i =0: i<t; i++){
-                X.get(rand() %100,rand ()%100);
+int main() {
+    int sizes[] = {50, 250, 500, 1000, 5000};
+    cout << "Pruebas de rendimiento" << endl;
+    
+    for(int t : sizes) {
+        cout << "==== Tamaño: " << t << " Elementos =====" << endl;
+        SparseMatrix X, Z;
+        generarMatriz(X, t);
+        generarMatriz(Z, t);
+
+        // Medir tiempo de inserción
+        double tiempoAdd = medirTiempo([&]() {
+            SparseMatrix temp;
+            generarMatriz(temp, t);
+        });
+        
+        // Medir tiempo de búsqueda (Get)
+        double tiempoGet = medirTiempo([&]() {
+            for(int i = 0; i < t; i++) {
+                X.get(rand() % 100, rand() % 100);
             }
         });
-        double tiempoMul = medirTiempo([&](){
-            SparseMatrix* P =X.multiply(&Z);
+        
+        // Medir tiempo de multiplicación
+        double tiempoMul = medirTiempo([&]() {
+            SparseMatrix* P = X.multiply(&Z);
             delete P;
         });
+        
         cout << "Inserción promedio: " << tiempoAdd << " s" << endl;
         cout << "Búsqueda promedio:  " << tiempoGet << " s" << endl;
         cout << "Multiplicación promedio: " << tiempoMul << " s" << endl;
+        cout << endl;
     }
-    cout << "Termino de las pruebas"<<endl;
+    
+    cout << "Termino de las pruebas" << endl;
     return 0;
 }

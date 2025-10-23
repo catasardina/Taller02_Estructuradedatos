@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"atomic": "cpp",
+			"compare": "cpp",
+			"optional": "cpp",
+			"format": "cpp",
+			"numeric": "cpp",
+			"cmath": "cpp"
+		}
+	}
+}
