@@ -42,20 +42,18 @@ int main() {
         generarMatriz(X, t);
         generarMatriz(Z, t);
 
-        // Medir tiempo de inserción
+        
         double tiempoAdd = medirTiempo([&]() {
             SparseMatrix temp;
             generarMatriz(temp, t);
         });
         
-        // Medir tiempo de búsqueda (Get)
         double tiempoGet = medirTiempo([&]() {
             for(int i = 0; i < t; i++) {
                 X.get(rand() % 100, rand() % 100);
             }
         });
         
-        // Medir tiempo de multiplicación
         double tiempoMul = medirTiempo([&]() {
             SparseMatrix* P = X.multiply(&Z);
             delete P;
@@ -66,7 +64,6 @@ int main() {
         cout << "Multiplicación promedio: " << tiempoMul << " s" << endl;
         cout << endl;
         
-        // Escribir en CSV
         csvFile << t << "," << tiempoAdd << "," << tiempoGet << "," << tiempoMul << "\n";
     }
     

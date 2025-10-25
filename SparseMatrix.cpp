@@ -4,14 +4,14 @@
 
 using namespace std;
 
-SparseMatrix::SparseMatrix() {  // Era "SparceMatrix" (typo)
+SparseMatrix::SparseMatrix() {  
     start = nullptr;
 }
 
-void SparseMatrix::add(int value, int xPos, int yPos) {  // Era "value." en vez de "value,"
+void SparseMatrix::add(int value, int xPos, int yPos) {  
     if(value == 0) return;
     
-    Nodo* newNodo = new Nodo(value, xPos, yPos);  // Era "Node*", debe ser "Nodo*"
+    Nodo* newNodo = new Nodo(value, xPos, yPos);  
     
     if(!start) {
         start = newNodo;
@@ -21,7 +21,7 @@ void SparseMatrix::add(int value, int xPos, int yPos) {  // Era "value." en vez 
     Nodo* current = start;
     Nodo* prev = nullptr;
 
-    // Corregido: era "$$" y "currebt"
+    
     while(current && (current->x < xPos || (current->x == xPos && current->y < yPos))) {
         prev = current;
         current = current->next;
@@ -51,7 +51,7 @@ int SparseMatrix::get(int xPos, int yPos) {
 }
 
 void SparseMatrix::remove(int xPos, int yPos) {
-    Nodo* current = start;  // Era "Node*", debe ser "Nodo*"
+    Nodo* current = start;  
     Nodo* prev = nullptr;
 
     while(current) {
@@ -69,7 +69,7 @@ void SparseMatrix::remove(int xPos, int yPos) {
 }
 
 void SparseMatrix::printStoredValues() {
-    Nodo* current = start;  // Era "Node*", debe ser "Nodo*"
+    Nodo* current = start;  
     if(!current) {
         cout << "La matriz está vacía." << endl;
         return;
@@ -80,13 +80,13 @@ void SparseMatrix::printStoredValues() {
     }
 }
 
-int SparseMatrix::density() {  // Cambiado de float a int según el .h
+int SparseMatrix::density() {  
     if(!start) return 0;
 
     int count = 0;
     int maxX = 0, maxY = 0;
 
-    Nodo* current = start;  // Era "Node*", debe ser "Nodo*"
+    Nodo* current = start;  
     while(current) {
         count++;
         if(current->x > maxX) maxX = current->x;
@@ -98,7 +98,7 @@ int SparseMatrix::density() {  // Cambiado de float a int según el .h
     return (count * 100) / totalSize;  // Retorna porcentaje como int
 }
 
-SparseMatrix* SparseMatrix::multiply(SparseMatrix* second) {  // Debe retornar puntero
+SparseMatrix* SparseMatrix::multiply(SparseMatrix* second) {  
     SparseMatrix* result = new SparseMatrix();
     Nodo* a = start;
     
@@ -118,7 +118,7 @@ SparseMatrix* SparseMatrix::multiply(SparseMatrix* second) {  // Debe retornar p
 }
 
 SparseMatrix::~SparseMatrix() {
-    Nodo* current = start;  // Era "Node*", debe ser "Nodo*"
+    Nodo* current = start;  
     while(current) {
         Nodo* temp = current;
         current = current->next;
