@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <ctime>
 #include <cstdlib>
 #include "SparseMatrix.h"
@@ -14,7 +15,6 @@ void generarMatriz(SparseMatrix& m, int cantidad) {
     }
 }
 
-// Template para medir tiempo de ejecución de una función
 template<typename Func>
 double medirTiempo(Func f, int repeticiones = 10) {
     double total = 0;
@@ -29,6 +29,11 @@ double medirTiempo(Func f, int repeticiones = 10) {
 
 int main() {
     int sizes[] = {50, 250, 500, 1000, 5000};
+    
+    // Abrir archivo CSV para escribir resultados
+    ofstream csvFile("data/resultados_rendimiento.csv");
+    csvFile << "Tamaño,Insercion,Busqueda,Multiplicacion\n";
+    
     cout << "Pruebas de rendimiento" << endl;
     
     for(int t : sizes) {
@@ -60,8 +65,12 @@ int main() {
         cout << "Búsqueda promedio:  " << tiempoGet << " s" << endl;
         cout << "Multiplicación promedio: " << tiempoMul << " s" << endl;
         cout << endl;
+        
+        // Escribir en CSV
+        csvFile << t << "," << tiempoAdd << "," << tiempoGet << "," << tiempoMul << "\n";
     }
     
-    cout << "Termino de las pruebas" << endl;
+    csvFile.close();
+    cout << "Termino de las pruebas. Datos guardados en resultados_rendimiento.csv" << endl;
     return 0;
 }
